@@ -1,0 +1,23 @@
+.btn-bd-primary {
+    font-weight: 600;
+    color: #fff; /* Color de texto blanco */
+    background-color: #007bff; /* Azul primario */
+    border-color: #007bff; /* Borde azul primario */
+}
+
+.btn-bd-primary:hover,
+.btn-bd-primary:active {
+    color: #fff; /* Color de texto blanco */
+    background-color: #0056b3; /* Azul oscuro al pasar el mouse o al hacer clic */
+    border-color: #0056b3; /* Borde azul oscuro al pasar el mouse o al hacer clic */
+}
+
+.btn-bd-primary:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra azul al enfocar */
+}
+
+.simple-linear {
+    background: linear-gradient(blue, pink);
+  }
+
+  

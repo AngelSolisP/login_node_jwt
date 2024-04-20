@@ -1,32 +1,36 @@
-const express = require('express');
+const express = require('express')
+const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser')
 
-const dotenv = require('dotenv');
+const app = express()
 
-const cookieParser = require('cookie-parser');
-
-const app = express();
-
-//motor de plantilla
+//seteamos el motor de plantillas
 app.set('view engine', 'ejs')
 
-//carpeta para archivos estaticos
-app.use(express.static('public'));
+//seteamos la carpeta public para archivos estáticos
+app.use(express.static('public'))
 
-//variables de entorno
-dotenv.config({ path: './.env/.env' });
+//para procesar datos enviados desde forms
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 
-//trabajar con las cookies
-//app.use(cookieParser());
+//seteamos las variables de entorno
+dotenv.config({path: './env/.env'})
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//para poder trabajar con las cookies
+app.use(cookieParser())
 
-//llamando a las rutas
-app.use('/', require('./routes/router'));
+//llamar al router
+app.use('/', require('./routes/router'))
 
-
-
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+//Para eliminar la cache 
+app.use(function(req, res, next) {
+    if (!req.user)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
 });
+
+
+app.listen(3000, ()=>{
+    console.log('SERVER UP runnung in http://localhost:3000')
+})
